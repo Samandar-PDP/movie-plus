@@ -10,8 +10,11 @@ part 'api_service.g.dart';
 abstract class ApiService {
   factory ApiService(Dio dio, {String baseUrl}) = _ApiService;
 
-  @GET('/popular')
+  @GET('3/movie/popular')
   Future<MovieResponse> getMovies(@Query('api_key') String apiKey);
+
+  @GET('3/search/movie')
+  Future<MovieResponse> searchMovies(@Query('api_key') String apiKey, @Query("query") String query);
 }
 Dio buildDioClient(String base) {
   final dio = Dio()..options = BaseOptions(baseUrl: base);

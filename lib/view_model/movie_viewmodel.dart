@@ -20,4 +20,20 @@ class MovieViewModel extends ChangeNotifier {
     movieList2.shuffle(); /// 3
     notifyListeners();
   }
+  searchMovies(String query) async {
+    await Future.delayed(const Duration(seconds: 1));
+    if(query.isNotEmpty) {
+      loading = true;
+      notifyListeners();
+      movieList.clear();
+      movieList.addAll(await _repo.searchMovies(query));
+      loading = false;
+      notifyListeners();
+    } else {
+      movieList.clear();
+      movieList.addAll(movieList2);
+      loading = false;
+      notifyListeners();
+    }
+  }
 }
