@@ -7,6 +7,7 @@ class MovieViewModel extends ChangeNotifier {
   final _repo = MovieRepository();
   bool loading = false;
   final List<Results> movieList = [];
+  final List<Results> movieList2 = []; /// 1
 
   getMovies() async {
     loading = true;
@@ -15,6 +16,8 @@ class MovieViewModel extends ChangeNotifier {
     loading = false;
     notifyListeners();
     movieList.addAll(await _repo.getMovies());
+    movieList2.addAll(movieList); /// 2
+    movieList2.shuffle(); /// 3
     notifyListeners();
   }
 }

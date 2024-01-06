@@ -54,8 +54,9 @@ class _FeedPageState extends State<FeedPage> {
             child: ListView.builder(
               shrinkWrap: true,
               scrollDirection: Axis.horizontal,
-              itemCount: 20,
+              itemCount: _viewModel.movieList2.length, /// 1
               itemBuilder: (context, index) {
+                final item = _viewModel.movieList2[index]; /// 2
                 return InkWell(
                   borderRadius: BorderRadius.circular(12),
                   child: Ink(
@@ -63,7 +64,7 @@ class _FeedPageState extends State<FeedPage> {
                     height: 200,
                     width: 150,
                     child: Image.network(
-                        'https://images.unsplash.com/photo-1621155346337-1d19476ba7d6?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGltYWdlfGVufDB8fDB8fHww',
+                        "https://image.tmdb.org/t/p/w500${item.posterPath}", /// 3
                         fit: BoxFit.cover),
                   ),
                 );
